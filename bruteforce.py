@@ -47,10 +47,10 @@ def find_best_profit(data):
 
 
 def display_result(result):
-    for item in best_combination[0]:
+    for item in result[0]:
         print(item[0])
-    print(f"Coût total des actions : {best_combination[1]}€")
-    print(f"Gain sur 2 ans : {best_combination[2]}€")
+    print(f"Coût total des actions : {result[1]}€")
+    print(f"Gain sur 2 ans : {result[2]}€")
     print(f"Fini en {end-start} sec")
 
 
