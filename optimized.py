@@ -17,8 +17,8 @@ def get_data_from_csv(path):
                 row.append((row[2] / 100) * row[1])
                 if float(row[1]) > 0:
                     data.append(row)
-            except:
-                pass
+            except ValueError:
+                print('Erreur de traitement des données')
         data.pop(0)
     return data
 
@@ -33,8 +33,8 @@ def find_best_combination_by_profit(sorted_data, max_cost):
     active_cost = 0
     best_profit = 0
     for i in range(0, len(sorted_data) - 1):
-        if active_cost + sorted_data[i][1] > max_cost:
-            break
+        if active_cost + sorted_data[i][1] >= max_cost:
+            pass
         else:
             active_cost += sorted_data[i][1]
             best_profit += sorted_data[i][3]
@@ -51,7 +51,7 @@ def display_result(result):
     print(f"Fini en {end - start} sec")
 
 
-raw_data = get_data_from_csv('./data/dataset2_Python+P7.csv')
+raw_data = get_data_from_csv('./data/dataset1_Python+P7.csv')
 start = time.time()
 sorted_data = sort_by_profit(raw_data)
 best_combination = find_best_combination_by_profit(sorted_data, max_cost)

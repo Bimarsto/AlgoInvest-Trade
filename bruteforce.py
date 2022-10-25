@@ -17,8 +17,8 @@ def get_data_from_csv(path):
                 row[2] = float(row[2])
                 if float(row[1]) > 0:
                     data.append(row)
-            except:
-                pass
+            except ValueError:
+                print('Erreur de traitement des données.')
     return data
 
 
@@ -32,7 +32,9 @@ def find_all_combinations(data, max_cost):
                 active_combination_cost += item[1]
                 active_combination_profit += (item[2] / 100) * item[1]
             if active_combination_cost <= max_cost:
-                all_combinations.append([subset, active_combination_cost, active_combination_profit])
+                all_combinations.append([subset,
+                                         active_combination_cost,
+                                         active_combination_profit])
     return all_combinations
 
 
