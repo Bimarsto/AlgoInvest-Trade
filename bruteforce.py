@@ -7,7 +7,7 @@ import time
 max_cost = 500
 
 
-def get_data_from_csv(path):
+def get_data_from_csv(path) -> list:
     data = []
     with open(path, 'r') as csvfile:
         file = csv.reader(csvfile)
@@ -18,11 +18,11 @@ def get_data_from_csv(path):
                 if float(row[1]) > 0:
                     data.append(row)
             except ValueError:
-                print('Erreur de traitement des données.')
+                print('Certaines données ont été ignorées.')
     return data
 
 
-def find_all_combinations(data, max_cost):
+def find_all_combinations(data, max_cost) -> list:
     all_combinations = []
     for n in range(len(data) + 1):
         for subset in combinations(data, n):
@@ -38,7 +38,7 @@ def find_all_combinations(data, max_cost):
     return all_combinations
 
 
-def find_best_profit(data):
+def find_best_profit(data) -> list:
     best_combination_profit = 0
     best_combination = []
     for combination in data:

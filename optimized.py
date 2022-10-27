@@ -6,7 +6,7 @@ import time
 max_cost = 500
 
 
-def get_data_from_csv(path):
+def get_data_from_csv(path) -> list:
     data = []
     with open(path, 'r') as csvfile:
         file = csv.reader(csvfile)
@@ -14,17 +14,16 @@ def get_data_from_csv(path):
             try:
                 row[1] = float(row[1])
                 row[2] = float(row[2])
-                row.append((row[2] / 100) * row[1])
                 if float(row[1]) > 0:
                     data.append(row)
             except ValueError:
-                print('Erreur de traitement des données')
+                print('Certaines données ont été ignorées.')
         data.pop(0)
     return data
 
 
-def sort_by_profit(data):
-    return sorted(data, key=lambda x: x[3], reverse=True)
+def sort_by_profit(data) -> list:
+    return sorted(data, key=lambda x: x[2], reverse=True)
 
 
 def find_best_combination_by_profit(sorted_data, max_cost):
@@ -37,7 +36,7 @@ def find_best_combination_by_profit(sorted_data, max_cost):
             pass
         else:
             active_cost += sorted_data[i][1]
-            best_profit += sorted_data[i][3]
+            best_profit += (sorted_data[i][2] / 100) * sorted_data[i][1]
             best_combination.append(sorted_data[i])
     result.extend((best_combination, active_cost, best_profit))
     return result
